@@ -35,8 +35,8 @@ class ClusterNodesInfo(object):
 class ClusterStorageInfo(object):
     def __init__(self, domain_status, cluster_nodes, es_domain_name, client_id):
         self.per_node = domain_status['EBSOptions']['VolumeSize']
-        self.total = int(cluster_nodes.slaves * self.per_node)
-        self.used = int(ClusterStorageInfo.getCloudWatchMetric('ClusterUsedSpace', es_domain_name, client_id) / 1024)
+        self.total = float(cluster_nodes.slaves * self.per_node)
+        self.used = float(ClusterStorageInfo.getCloudWatchMetric('ClusterUsedSpace', es_domain_name, client_id) / 1024)
         self.available = self.total - self.used
         self.printStorageInfo()
 
@@ -59,7 +59,7 @@ class ClusterStorageInfo(object):
 
 
     def printStorageInfo(self):
-        print("Cluster Disk Space(GB): {:,} Total ({:,} Used, {:,} Available).".format(
+        print("Cluster Disk Space(GB): {:,.2f} Total ({:,.2f} Used, {:,.2f} Available).".format(
               self.total,
               self.used,
               self.available))
