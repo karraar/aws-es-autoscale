@@ -15,7 +15,7 @@ Usage: ./aws-es-auto-scale.py[OPTIONS] --domain-name <es-domain-name>
 ./aws-es-auto-scale.py --d my-stage
 
 Using the following configuration:
-DomainName:    my-staging
+DomainName:    my-stage
 min-slaves:    5
 max-slaves:    50
 percent-allow: 0.3
@@ -25,3 +25,20 @@ Cluster Nodes: 8 (3 Masters and 5 Slaves).
 Cluster Disk Space(GB): 250.00 Total (55.70 Used, 194.30 Available).
 Cluster Slave Nodes: Currently using: 5, Need: 2, with allowance: 3, with safeguard: 5.
 ````
+
+## Example output with execute.
+```bash
+./aws-es-auto-scale.py --d my-stage -c
+
+Using the following configuration:
+DomainName:    my-stage
+min-slaves:    5
+max-slaves:    50
+percent-allow: 0.3
+configure:     False
+
+Cluster Nodes: 8 (3 Masters and 5 Slaves).
+Cluster Disk Space(GB): 250.00 Total (55.70 Used, 194.30 Available).
+Cluster Slave Nodes: Currently using: 5, Need: 2, with allowance: 3, with safeguard: 5.
+Changing Configuration...
+```
